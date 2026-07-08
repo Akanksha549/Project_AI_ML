@@ -1,8 +1,7 @@
 streamlit
-opencv-python
+tensorflow==2.19.0
 numpy
-scikit-learn
-joblib
-tensorflow
-keras_preprocessing
+opencv-python-headless
+pillow
 matplotlib
+scikit-learn
