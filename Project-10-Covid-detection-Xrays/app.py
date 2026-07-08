@@ -9,7 +9,7 @@ Original file is located at
 # Detection of Covid-19 from Chest-X-ray
 """
 
-!pip install keras_preprocessing
+
 
 # Import the required modules
 import numpy as np
