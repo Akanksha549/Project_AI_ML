@@ -30,22 +30,10 @@ CLASSES = ["covid",  "normal"]
 
 """## Method No 2: Data ingest using Google Drive"""
 
-from google.colab import drive
-drive.mount('/content/drive')
 
 BASIS_DIR = '/content/drive/MyDrive/dataset '
 CLASSES = ["covid",  "normal"]
 
-"""# Method No 3: Data ingest using Direct method"""
-
-BASIS_DIR = '/content/sample_data/dataset method 3'
-CLASSES = ["covid",  "normal"]
-
-"""# Method No 4: Data ingest using Local on-premises"""
-
-# COVID and Normal dataset directory
-BASIS_DIR = 'D:/DataSet/COVID_CHEST_XRAY'
-classes=["COVID_",  "Normal_"]
 
 """# Image augmentation process:"""
 
