@@ -4,4 +4,4 @@ numpy
 scikit-learn
 joblib
 tensorflow
-keras_preprocessing
+keras
