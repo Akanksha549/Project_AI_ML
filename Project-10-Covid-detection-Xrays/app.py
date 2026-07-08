@@ -10,7 +10,7 @@ from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 
 # Assuming you have a pre-trained model saved as 'your_model.h5'
-model = load_model('model.h5')
+model = load_model('model.keras')
 
 path = "/content/dataset/normal/IM-0131-0001.jpeg"
 img = image.load_img(path, target_size=(299, 299))
