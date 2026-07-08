@@ -25,16 +25,6 @@ import matplotlib.pyplot as plt
 ## COVID and Normal dataset directory
 ## Method No 1: Using Kaggle
 """
-
-#install kaggle
-! pip install kaggle
-
-! kaggle datasets download alifrahman/covid19-chest-xray-image-dataset
-
-! mkdir train
-
-! unzip /content/covid19-chest-xray-image-dataset.zip
-
 BASIS_DIR = '/content/dataset'
 CLASSES = ["covid",  "normal"]
 
