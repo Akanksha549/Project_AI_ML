@@ -146,8 +146,6 @@ from tensorflow.keras.models import save_model
 save_model(model, 'model.keras')
 
 """# Test random image"""
-
-!pip install streamlit
 import streamlit
 
 import streamlit as st
