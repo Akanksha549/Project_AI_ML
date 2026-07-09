@@ -15,87 +15,177 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# -------------------------------------------------
-# THEME TOGGLE
-# -------------------------------------------------
-dark_mode = st.sidebar.toggle("🌙 Dark Mode", value=False)
 
-if dark_mode:
-    bg_color = "#0F172A"
-    card_color = "#1E293B"
-    text_color = "#F8FAFC"
-    accent = "#60A5FA"
-else:
-    bg_color = "#F8FAFC"
-    card_color = "#FFFFFF"
-    text_color = "#1E293B"
-    accent = "#2563EB"
+
+# -------------------------------------------------
+# APP THEME
+# -------------------------------------------------
+bg_color = "#F4F9FF"
+card_color = "#FFFFFF"     
+sidebar_color = "#EAF4FF"  
+text_color = "#1E3A5F"     
+accent = "#3B82F6"          
+accent_hover = "#2563EB"   
+border = "#D6E8FF"         
 
 # -------------------------------------------------
 # CUSTOM CSS
 # -------------------------------------------------
+# -------------------------------------------------
+# CALM BLUE THEME
+# -------------------------------------------------
+
+bg_color = "#F4F9FF"          # Page background
+card_color = "#FFFFFF"        # Cards
+sidebar_color = "#EAF4FF"     # Sidebar
+text_color = "#1E3A5F"        # Text
+accent = "#3B82F6"            # Primary blue
+accent_hover = "#2563EB"      # Hover blue
+border = "#D6E8FF"            # Borders
+
 st.markdown(
     f"""
-    <style>
+<style>
 
-    html, body, [class*="css"] {{
-        font-family: 'Segoe UI', sans-serif;
-        background-color: {bg_color};
-        color: {text_color};
-    }}
+/* ---------------- APP ---------------- */
 
-    .stApp {{
-        background-color: {bg_color};
-    }}
+html, body {{
+    background-color: {bg_color};
+}}
 
-    h1 {{
-        text-align: center;
-        color: {text_color};
-        font-weight: 700;
-    }}
+.stApp {{
+    background-color: {bg_color};
+}}
 
-    .glass {{
-        background: {card_color};
-        padding: 25px;
-        border-radius: 18px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        border: 1px solid rgba(255,255,255,0.1);
-        margin-bottom: 20px;
-    }}
+/* ---------------- SIDEBAR ---------------- */
 
-    .footer {{
-        text-align: center;
-        font-size: 14px;
-        color: gray;
-        padding-top: 30px;
-    }}
+section[data-testid="stSidebar"] {{
+    background-color: {sidebar_color};
+    border-right: 1px solid {border};
+}}
 
-    div.stButton > button {{
-        width: 100%;
-        border-radius: 12px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: 600;
-        background-color: {accent};
-        color: white;
-        border: none;
-    }}
+/* ---------------- TEXT ---------------- */
 
-    div.stButton > button:hover {{
-        background-color: #1D4ED8;
-        transition: 0.3s;
-    }}
+h1, h2, h3, h4, h5, h6,
+p, span, label,
+div[data-testid="stMarkdownContainer"],
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricValue"] {{
+    color: {text_color} !important;
+}}
 
-    </style>
-    """,
+/* ---------------- TITLES ---------------- */
+
+h1 {{
+    text-align: center;
+    font-weight: 700;
+}}
+
+/* ---------------- BUTTONS ---------------- */
+
+div.stButton > button {{
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    background-color: {accent};
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+}}
+
+div.stButton > button:hover {{
+    background-color: {accent_hover};
+    color: white;
+}}
+
+/* ---------------- LINK BUTTONS ---------------- */
+
+div[data-testid="stLinkButton"] button {{
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    color: {text_color};
+    border: 1px solid {border};
+    font-weight: 600;
+}}
+
+div[data-testid="stLinkButton"] button:hover {{
+    background-color: {accent};
+    color: white;
+}}
+
+div[data-testid="stLinkButton"] button * {{
+    color: inherit !important;
+}}
+
+/* ---------------- FILE UPLOADER ---------------- */
+
+[data-testid="stFileUploader"] {{
+    background-color: white;
+    border: 2px dashed {accent};
+    border-radius: 15px;
+    padding: 10px;
+}}
+
+[data-testid="stFileUploader"] * {{
+    color: {text_color} !important;
+}}
+
+[data-testid="stFileUploader"] button {{
+    background-color: {accent} !important;
+    color: white !important;
+    border-radius: 10px !important;
+}}
+
+[data-testid="stFileUploader"] button:hover {{
+    background-color: {accent_hover} !important;
+}}
+
+/* ---------------- EXPANDERS ---------------- */
+
+div[data-testid="stExpander"] {{
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid {border};
+}}
+
+div[data-testid="stExpander"] * {{
+    color: {text_color};
+}}
+
+/* ---------------- METRICS ---------------- */
+
+div[data-testid="stMetric"] {{
+    background-color: white;
+    border: 1px solid {border};
+    border-radius: 12px;
+    padding: 10px;
+}}
+
+/* ---------------- PROGRESS BAR ---------------- */
+
+div[data-testid="stProgressBar"] > div {{
+    background-color: {accent};
+}}
+
+/* ---------------- FOOTER ---------------- */
+
+.footer {{
+    text-align: center;
+    color: #64748B;
+    font-size: 14px;
+}}
+
+</style>
+""",
     unsafe_allow_html=True
 )
-
 # -------------------------------------------------
 # SIDEBAR
 # -------------------------------------------------
 with st.sidebar:
-    st.title("⚙️ Settings")
+    st.title("📘 Overview")
 
     st.markdown("---")
 
@@ -117,7 +207,6 @@ with st.sidebar:
         "Upload a face image and let the CNN model predict "
         "whether it belongs to a Male or Female."
     )
-
 # -------------------------------------------------
 # MAIN TITLE
 # -------------------------------------------------
@@ -182,17 +271,21 @@ if uploaded_file:
 
                 img = preprocess_image(image)
 
-                prediction = model.predict(img, verbose=0)[0][0]
+                prediction = float(model.predict(img, verbose=0)[0][0])
 
                 end = time.time()
 
                 inference = end - start
 
+            #Debug info
+            st.write("Raw Prediction Value:", prediction)
+
+            
             if prediction >= 0.5:
-                label = " Male"
+                label = " Female"
                 confidence = prediction
             else:
-                label = " Female"
+                label = " Male"
                 confidence = 1 - prediction
 
             st.success(f"Prediction: **{label}**")
@@ -240,14 +333,14 @@ if uploaded_file:
                             f"{male_prob*100:.1f}%"
                         ],
                         textposition="auto",
-                        marker_color=["#EC4899", "#3B82F6"]
+                       marker_color=["#93C5FD", "#2563EB"]
                     )
                 ]
             )
 
             fig.update_layout(
                 height=350,
-                template="plotly_white" if not dark_mode else "plotly_dark",
+                template="plotly_white",
                 margin=dict(l=20, r=20, t=40, b=20),
                 xaxis_title="Class",
                 yaxis_title="Probability",
@@ -332,20 +425,6 @@ with st.expander("⚙️ Technologies Used"):
 # FOOTER
 # -------------------------------------------------
 st.divider()
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.link_button(
-        "💻 GitHub",
-        "https://github.com/Akanksha549/"
-    )
-
-with col2:
-    st.link_button(
-        "🔗 LinkedIn",
-        "https://www.linkedin.com/in/akanksha-mishra-7894912bb"
-    )
 
 st.markdown(
     """
