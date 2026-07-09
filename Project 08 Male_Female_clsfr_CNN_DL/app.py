@@ -103,12 +103,12 @@ with st.sidebar:
 
     st.link_button(
         "💻 GitHub",
-        "https://github.com/yourusername"
+        "https://github.com/Akanksha549/"
     )
 
     st.link_button(
         "🔗 LinkedIn",
-        "https://linkedin.com/in/yourprofile"
+        "https://www.linkedin.com/in/akanksha-mishra-7894912bb"
     )
 
     st.markdown("---")
@@ -132,12 +132,12 @@ st.caption(
 # -------------------------------------------------
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("gender_classifier.keras")
+    return tf.keras.models.load_model("male_female_eye_model.keras")
 
 try:
     model = load_model()
 except Exception as e:
-    st.error(f"❌ Unable to load model.\n\n{e}")
+    st.error(f"Unable to load model.\n\n{e}")
     st.stop()
 
 # -------------------------------------------------
@@ -167,7 +167,7 @@ if uploaded_file:
     col1, col2 = st.columns([1, 1])
 
     with col1:
-        st.markdown("### 🖼️ Uploaded Image")
+        st.markdown("###  Uploaded Image")
         st.image(image, use_container_width=True)
 
     with col2:
@@ -189,10 +189,10 @@ if uploaded_file:
                 inference = end - start
 
             if prediction >= 0.5:
-                label = "👨 Male"
+                label = " Male"
                 confidence = prediction
             else:
-                label = "👩 Female"
+                label = " Female"
                 confidence = 1 - prediction
 
             st.success(f"Prediction: **{label}**")
@@ -296,7 +296,7 @@ Images were resized and normalized before training.
 # -------------------------------------------------
 # MODEL DETAILS
 # -------------------------------------------------
-with st.expander("🧠 Model Details"):
+with st.expander(" Model Details"):
 
     st.markdown("""
 **Framework:** TensorFlow / Keras
@@ -338,13 +338,13 @@ col1, col2 = st.columns(2)
 with col1:
     st.link_button(
         "💻 GitHub",
-        "https://github.com/yourusername"
+        "https://github.com/Akanksha549/"
     )
 
 with col2:
     st.link_button(
         "🔗 LinkedIn",
-        "https://linkedin.com/in/yourprofile"
+        "https://www.linkedin.com/in/akanksha-mishra-7894912bb"
     )
 
 st.markdown(
