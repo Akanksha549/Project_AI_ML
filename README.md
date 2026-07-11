@@ -5,3 +5,4 @@ Project 4: https://day3deployment-9shjmn8c5skymadxkfisgv.streamlit.app/
 Project 5A: https://employee-retention-data.streamlit.app/
 Project 5B: https://logistic-regression-lr.streamlit.app/
 Project 6A: https://image-classification-sl.streamlit.app/
+Project 6B: https://gender-classifier-gc.streamlit.app/
