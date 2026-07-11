@@ -7,9 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1CbeO67NOb2HMnsFj4hwHUfaEjKIQEA8I
 
 # Detection of Covid-19 from Chest-X-ray
-"""
-
-!pip install keras_preprocessing
+""
 
 # Import the required modules
 import numpy as np
@@ -20,44 +18,11 @@ from keras_preprocessing import image
 from keras_preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 
-#
+
 
 """# Data ingesting of Covid 19 images
 
-## COVID and Normal dataset directory
-## Method No 1: Using Kaggle
-"""
 
-#install kaggle
-!pip install kaggle
-
-!kaggle datasets download alifrahman/covid19-chest-xray-image-dataset
-
-!mkdir train
-
-!unzip /content/covid19-chest-xray-image-dataset.zip
-
-BASIS_DIR = '/content/dataset'
-CLASSES = ["covid",  "normal"]
-
-"""## Method No 2: Data ingest using Google Drive"""
-
-from google.colab import drive
-drive.mount('/content/drive', force_remount=True)
-
-BASIS_DIR = '/content/drive/MyDrive/dataset '
-CLASSES = ["covid",  "normal"]
-
-"""# Method No 3: Data ingest using Direct method"""
-
-BASIS_DIR = '/content/sample_data/dataset method 3'
-CLASSES = ["covid",  "normal"]
-
-"""# Method No 4: Data ingest using Local on-premises"""
-
-# COVID and Normal dataset directory
-BASIS_DIR = 'D:/DataSet/COVID_CHEST_XRAY'
-classes=["COVID_",  "Normal_"]
 
 """# Image augmentation process:"""
 
