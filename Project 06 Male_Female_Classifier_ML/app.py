@@ -68,15 +68,14 @@ if uploaded_file is not None:
     # Prediction
     prediction = model.predict([resized])[0]
 
+    
     # Prediction probabilities
     probability = model.predict_proba([resized])[0]
-
     # Display result
     if prediction == 0:
-        st.success("👩 Prediction: FEMALE")
-    else:
         st.success("👨 Prediction: MALE")
-
+    else:
+        st.success("👩 Prediction: FEMALE")
     # Display confidence
     st.subheader("Prediction Confidence")
 
