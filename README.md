@@ -22,4 +22,4 @@ Project 9: https://covid19-xray-detection-c.streamlit.app/
 
 PROJECT 10: https://ragchatbot-samsung.streamlit.app/
 
-PROJECT 11:
+PROJECT 11: https://netflixanalyserllm-nlp.streamlit.app/
