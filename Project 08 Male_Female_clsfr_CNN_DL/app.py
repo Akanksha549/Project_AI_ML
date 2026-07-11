@@ -5,187 +5,94 @@ from PIL import Image
 import plotly.graph_objects as go
 import time
 
-# -------------------------------------------------
+# ----------------------------------------------------
 # PAGE CONFIGURATION
-# -------------------------------------------------
+# ----------------------------------------------------
 st.set_page_config(
-    page_title="Gender Classification AI",
-    page_icon="🧠",
+    page_title="Male/Female Eye Classifier",
+    page_icon="👁️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-
-
-# -------------------------------------------------
-# APP THEME
-# -------------------------------------------------
+# ----------------------------------------------------
+# COLORS
+# ----------------------------------------------------
 bg_color = "#F4F9FF"
-card_color = "#FFFFFF"     
-sidebar_color = "#EAF4FF"  
-text_color = "#1E3A5F"     
-accent = "#3B82F6"          
-accent_hover = "#2563EB"   
-border = "#D6E8FF"         
+card_color = "#FFFFFF"
+sidebar_color = "#EAF4FF"
+text_color = "#1E3A5F"
+accent = "#2563EB"
+border = "#D6E8FF"
 
-# -------------------------------------------------
+# ----------------------------------------------------
 # CUSTOM CSS
-# -------------------------------------------------
-# -------------------------------------------------
-# CALM BLUE THEME
-# -------------------------------------------------
-
-bg_color = "#F4F9FF"          # Page background
-card_color = "#FFFFFF"        # Cards
-sidebar_color = "#EAF4FF"     # Sidebar
-text_color = "#1E3A5F"        # Text
-accent = "#3B82F6"            # Primary blue
-accent_hover = "#2563EB"      # Hover blue
-border = "#D6E8FF"            # Borders
-
-st.markdown(
-    f"""
+# ----------------------------------------------------
+st.markdown(f"""
 <style>
 
-/* ---------------- APP ---------------- */
-
-html, body {{
-    background-color: {bg_color};
-}}
-
 .stApp {{
-    background-color: {bg_color};
+    background-color:{bg_color};
 }}
-
-/* ---------------- SIDEBAR ---------------- */
 
 section[data-testid="stSidebar"] {{
-    background-color: {sidebar_color};
-    border-right: 1px solid {border};
+    background:{sidebar_color};
 }}
 
-/* ---------------- TEXT ---------------- */
-
-h1, h2, h3, h4, h5, h6,
-p, span, label,
-div[data-testid="stMarkdownContainer"],
-div[data-testid="stMetricLabel"],
-div[data-testid="stMetricValue"] {{
-    color: {text_color} !important;
+h1,h2,h3,h4,p,label,span {{
+    color:{text_color};
 }}
-
-/* ---------------- TITLES ---------------- */
-
-h1 {{
-    text-align: center;
-    font-weight: 700;
-}}
-
-/* ---------------- BUTTONS ---------------- */
 
 div.stButton > button {{
-    width: 100%;
-    height: 50px;
-    border-radius: 12px;
-    border: none;
-    background-color: {accent};
-    color: white;
-    font-size: 17px;
-    font-weight: 600;
+    width:100%;
+    height:50px;
+    border-radius:12px;
+    background:{accent};
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    border:none;
 }}
 
 div.stButton > button:hover {{
-    background-color: {accent_hover};
-    color: white;
+    background:#1D4ED8;
 }}
-
-/* ---------------- LINK BUTTONS ---------------- */
-
-div[data-testid="stLinkButton"] button {{
-    width: 100%;
-    border-radius: 10px;
-    background-color: white;
-    color: {text_color};
-    border: 1px solid {border};
-    font-weight: 600;
-}}
-
-div[data-testid="stLinkButton"] button:hover {{
-    background-color: {accent};
-    color: white;
-}}
-
-div[data-testid="stLinkButton"] button * {{
-    color: inherit !important;
-}}
-
-/* ---------------- FILE UPLOADER ---------------- */
 
 [data-testid="stFileUploader"] {{
-    background-color: white;
-    border: 2px dashed {accent};
-    border-radius: 15px;
-    padding: 10px;
+    background:white;
+    border:2px dashed {accent};
+    border-radius:15px;
 }}
-
-[data-testid="stFileUploader"] * {{
-    color: {text_color} !important;
-}}
-
-[data-testid="stFileUploader"] button {{
-    background-color: {accent} !important;
-    color: white !important;
-    border-radius: 10px !important;
-}}
-
-[data-testid="stFileUploader"] button:hover {{
-    background-color: {accent_hover} !important;
-}}
-
-/* ---------------- EXPANDERS ---------------- */
-
-div[data-testid="stExpander"] {{
-    background-color: white;
-    border-radius: 12px;
-    border: 1px solid {border};
-}}
-
-div[data-testid="stExpander"] * {{
-    color: {text_color};
-}}
-
-/* ---------------- METRICS ---------------- */
-
-div[data-testid="stMetric"] {{
-    background-color: white;
-    border: 1px solid {border};
-    border-radius: 12px;
-    padding: 10px;
-}}
-
-/* ---------------- PROGRESS BAR ---------------- */
-
-div[data-testid="stProgressBar"] > div {{
-    background-color: {accent};
-}}
-
-/* ---------------- FOOTER ---------------- */
 
 .footer {{
-    text-align: center;
-    color: #64748B;
-    font-size: 14px;
+text-align:center;
+color:gray;
+font-size:14px;
 }}
 
 </style>
-""",
-    unsafe_allow_html=True
-)
-# -------------------------------------------------
+""", unsafe_allow_html=True)
+
+# ----------------------------------------------------
 # SIDEBAR
-# -------------------------------------------------
+# ----------------------------------------------------
 with st.sidebar:
-    st.title("📘 Overview")
+
+    st.title("👁️ Eye Classifier")
+
+    st.markdown("---")
+
+    st.success(
+        """
+Upload a **human eye image**.
+
+The CNN model predicts whether the eye belongs to a
+
+✅ Male
+
+✅ Female
+"""
+    )
 
     st.markdown("---")
 
@@ -201,24 +108,18 @@ with st.sidebar:
         "https://www.linkedin.com/in/akanksha-mishra-7894912bb"
     )
 
-    st.markdown("---")
-
-    st.info(
-        "Upload a face image and let the CNN model predict "
-        "whether it belongs to a Male or Female."
-    )
-# -------------------------------------------------
-# MAIN TITLE
-# -------------------------------------------------
-st.title("🧠 Gender Classification using CNN")
+# ----------------------------------------------------
+# TITLE
+# ----------------------------------------------------
+st.title("👁️ Male & Female Eye Classification using CNN")
 
 st.caption(
     "Deep Learning • TensorFlow • Keras • Streamlit"
 )
 
-# -------------------------------------------------
+# ----------------------------------------------------
 # LOAD MODEL
-# -------------------------------------------------
+# ----------------------------------------------------
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model("male_female_eye_model.keras")
@@ -229,211 +130,344 @@ except Exception as e:
     st.error(f"Unable to load model.\n\n{e}")
     st.stop()
 
-# -------------------------------------------------
+# ----------------------------------------------------
 # IMAGE SETTINGS
-# -------------------------------------------------
+# ----------------------------------------------------
 IMG_SIZE = 128
 
 def preprocess_image(image):
+
     image = image.convert("RGB")
+
     image = image.resize((IMG_SIZE, IMG_SIZE))
-    img = np.array(image) / 255.0
+
+    img = np.array(image)
+
+    img = img.astype("float32") / 255.0
+
     img = np.expand_dims(img, axis=0)
+
     return img
 
-# -------------------------------------------------
-# IMAGE UPLOAD
-# -------------------------------------------------
+# ----------------------------------------------------
+# IMAGE UPLOADER
+# ----------------------------------------------------
 uploaded_file = st.file_uploader(
-    "📂 Upload an Image",
+    "📂 Upload Eye Image",
     type=["jpg", "jpeg", "png"]
 )
 
+# ----------------------------------------------------
+# PREDICTION
+# ----------------------------------------------------
 if uploaded_file:
 
     image = Image.open(uploaded_file)
 
-    col1, col2 = st.columns([1, 1])
+    col1, col2 = st.columns([1,1])
 
     with col1:
-        st.markdown("###  Uploaded Image")
-        st.image(image, use_container_width=True)
+
+        st.subheader("📷 Uploaded Eye Image")
+
+        st.image(
+            image,
+            use_container_width=True
+        )
 
     with col2:
 
-        st.markdown("### 🤖 Prediction")
+        st.subheader("🤖 CNN Prediction")
 
-        if st.button("🚀 Predict"):
+        if st.button("🚀 Predict Gender"):
 
-            with st.spinner("Analyzing image..."):
+            with st.spinner("Analyzing eye image..."):
 
                 start = time.time()
 
                 img = preprocess_image(image)
 
-                prediction = float(model.predict(img, verbose=0)[0][0])
+                prediction = float(
+                    model.predict(img, verbose=0)[0][0]
+                )
 
                 end = time.time()
 
                 inference = end - start
 
-            #Debug info
-            st.write("Raw Prediction Value:", prediction)
+            # ------------------------------------------------
+            # CLASS MAPPING
+            # femaleeyes = 0
+            # maleeyes = 1
+            # ------------------------------------------------
 
-            
             if prediction >= 0.5:
-                label = " Female"
+
+                label = "👨 Male"
+
                 confidence = prediction
+
             else:
-                label = " Male"
+
+                label = "👩 Female"
+
                 confidence = 1 - prediction
 
-            st.success(f"Prediction: **{label}**")
+            st.success(f"### Prediction : {label}")
 
-            st.metric(
-                label="Confidence",
-                value=f"{confidence*100:.2f}%"
-            )
+            c1, c2 = st.columns(2)
 
-            st.metric(
-                label="Inference Time",
-                value=f"{inference:.3f} sec"
-            )
+            with c1:
+
+                st.metric(
+                    "Confidence",
+                    f"{confidence*100:.2f}%"
+                )
+
+            with c2:
+
+                st.metric(
+                    "Inference Time",
+                    f"{inference:.3f} sec"
+                )
 
             st.progress(float(confidence))
 
             st.divider()
 
-            st.write("### Prediction Summary")
+            st.subheader("📊 Prediction Probability")
 
-            st.write(f"**Gender :** {label}")
+            female_prob = 1 - prediction
+            male_prob = prediction
 
-            st.write(
-                f"**Confidence :** {confidence*100:.2f}%"
-            )
+            fig = go.Figure()
 
-            st.write(
-                f"**Inference Time :** {inference:.3f} sec"
-            )
-# -------------------------------------------------
-# PROBABILITY CHART
-# -------------------------------------------------
-            st.markdown("### 📊 Prediction Probability")
+            fig.add_trace(
 
-            female_prob = float(1 - prediction)
-            male_prob = float(prediction)
+                go.Bar(
 
-            fig = go.Figure(
-                data=[
-                    go.Bar(
-                        x=["Female", "Male"],
-                        y=[female_prob, male_prob],
-                        text=[
-                            f"{female_prob*100:.1f}%",
-                            f"{male_prob*100:.1f}%"
-                        ],
-                        textposition="auto",
-                       marker_color=["#93C5FD", "#2563EB"]
-                    )
-                ]
+                    x=["Female","Male"],
+
+                    y=[female_prob,male_prob],
+
+                    text=[
+                        f"{female_prob*100:.1f}%",
+                        f"{male_prob*100:.1f}%"
+                    ],
+
+                    textposition="outside",
+
+                    marker_color=[
+                        "#EC4899",
+                        "#2563EB"
+                    ]
+
+                )
+
             )
 
             fig.update_layout(
-                height=350,
+
+                height=380,
+
                 template="plotly_white",
-                margin=dict(l=20, r=20, t=40, b=20),
-                xaxis_title="Class",
-                yaxis_title="Probability",
-                yaxis=dict(range=[0, 1]),
-                showlegend=False
+
+                showlegend=False,
+
+                yaxis=dict(range=[0,1]),
+
+                xaxis_title="Gender",
+
+                yaxis_title="Probability"
+
             )
 
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(
+                fig,
+                use_container_width=True
+            )
 
-# -------------------------------------------------
+            st.divider()
+
+            st.subheader("📋 Prediction Summary")
+
+            st.write(f"### Gender : {label}")
+
+            st.write(
+                f"Confidence : {confidence*100:.2f}%"
+            )
+
+            st.write(
+                f"Inference Time : {inference:.3f} sec"
+            )
+
+# ============================================================
 # ABOUT PROJECT
-# -------------------------------------------------
+# ============================================================
+
 st.divider()
 
-with st.expander("ℹ️ About this Project"):
+with st.expander("ℹ️ About this Project", expanded=False):
 
     st.markdown("""
-This application predicts whether the uploaded face belongs to a **Male** or **Female**
-using a **Convolutional Neural Network (CNN)** trained with TensorFlow/Keras.
+### 👁️ Male & Female Eye Classification using CNN
 
-The project demonstrates a complete Deep Learning pipeline:
+This application predicts whether an uploaded **human eye image**
+belongs to a **Male** or **Female** using a trained
+**Convolutional Neural Network (CNN)**.
 
-- Data preprocessing
-- CNN model training
-- Model evaluation
-- Streamlit deployment
-- Interactive prediction interface
+### Features
+
+- Eye Image Classification
+- Deep Learning Prediction
+- Real-time Inference
+- Probability Visualization
+- Confidence Score
+- Streamlit Deployment
+
+The model was developed using **TensorFlow/Keras**
+and deployed with **Streamlit**.
 """)
 
-# -------------------------------------------------
+# ============================================================
 # DATASET
-# -------------------------------------------------
+# ============================================================
+
 with st.expander("📂 Dataset"):
 
     st.markdown("""
-**Dataset Source**
 
-Kaggle Gender Classification Dataset
+### Dataset Information
 
-The dataset contains thousands of labeled face images
-used to train the CNN model.
+The CNN model was trained on a labeled eye image dataset
+containing images from both male and female subjects.
 
-Images were resized and normalized before training.
+#### Image Processing
+
+- RGB Images
+- Image Size: **128 × 128**
+- Pixel Normalization
+- Binary Classification
+
+Classes
+
+- Female Eyes
+- Male Eyes
+
 """)
 
-# -------------------------------------------------
+# ============================================================
 # MODEL DETAILS
-# -------------------------------------------------
-with st.expander(" Model Details"):
+# ============================================================
+
+with st.expander("🧠 CNN Model"):
 
     st.markdown("""
-**Framework:** TensorFlow / Keras
 
-**Model:** Convolutional Neural Network (CNN)
+### Architecture
 
-**Input Size:** 128 × 128 × 3
+- TensorFlow
+- Keras
+- Convolutional Neural Network
+- Binary Classification
 
-**Output:** Binary Classification
+### Input Shape
 
-**Classes**
+128 × 128 × 3
 
-- Female
-- Male
+### Output
+
+Sigmoid Activation
+
+Prediction Range
+
+0 → Female
+
+1 → Male
+
 """)
 
-# -------------------------------------------------
+# ============================================================
 # TECHNOLOGIES
-# -------------------------------------------------
+# ============================================================
+
 with st.expander("⚙️ Technologies Used"):
 
     st.markdown("""
+
 - Python
-- Streamlit
 - TensorFlow
 - Keras
 - NumPy
 - Pillow
 - Plotly
+- Streamlit
+
 """)
 
-# -------------------------------------------------
+# ============================================================
+# PROJECT WORKFLOW
+# ============================================================
+
+with st.expander("🔄 Workflow"):
+
+    st.markdown("""
+
+1. Upload Eye Image
+
+↓
+
+2. Image Preprocessing
+
+↓
+
+3. CNN Feature Extraction
+
+↓
+
+4. Gender Prediction
+
+↓
+
+5. Display Confidence Score
+
+""")
+
+# ============================================================
+# DISCLAIMER
+# ============================================================
+
+with st.expander("⚠ Disclaimer"):
+
+    st.info(
+        """
+This project is developed for educational and research
+purposes only.
+
+Predictions depend on image quality, lighting conditions,
+and the data used during training.
+"""
+    )
+
+# ============================================================
 # FOOTER
-# -------------------------------------------------
+# ============================================================
+
 st.divider()
 
 st.markdown(
-    """
-    <div class="footer">
-        <br>
-        <b>Gender Classification AI</b><br>
-        Built with ❤️ using Streamlit, TensorFlow & Keras<br><br>
-        © 2026 Akanksha Mishra
-    </div>
-    """,
-    unsafe_allow_html=True
+"""
+<div style='text-align:center;color:gray;'>
+
+### 👁️ Male & Female Eye Classification using CNN
+
+Built with ❤️ using
+
+TensorFlow • Keras • Streamlit
+
+© 2026 Akanksha Mishra
+
+</div>
+""",
+unsafe_allow_html=True
 )
