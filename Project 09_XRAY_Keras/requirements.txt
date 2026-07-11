@@ -1,5 +1,5 @@
 streamlit
-opencv-python
 numpy
-scikit-learn
-matplotlib
+Pillow
+h5py
+tensorflow-cpu==2.16.1
