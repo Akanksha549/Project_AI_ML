@@ -6,3 +6,4 @@ Project 5A: https://employee-retention-data.streamlit.app/
 Project 5B: https://logistic-regression-lr.streamlit.app/
 Project 6A: https://image-classification-sl.streamlit.app/
 Project 6B: https://gender-classifier-gc.streamlit.app/
+Project 7: https://iris-flower-cluster-wxkf3fhudvyrdbgpbyr5nk.streamlit.app/
