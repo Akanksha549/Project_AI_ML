@@ -8,7 +8,6 @@ Original file is located at
 
 # Detection of Covid-19 from Chest-X-ray
 ""
-
 # Import the required modules
 import numpy as np
 import pandas as pd
